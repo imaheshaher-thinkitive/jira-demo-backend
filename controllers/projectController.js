@@ -42,3 +42,13 @@ module.exports.getProjects = async(req,res)=>{
         "data":projectData
     })
 }
+
+module.exports.getProjectsByOwner = async(req,res) =>{
+    let project_owner = req.body.project_owner
+    const projectData = await getAllData(projectModel,{project_owner:project_owner})
+    return res.json({
+        "status":true,
+        "message":"Project listed successfully",
+        "data":projectData
+    })
+}

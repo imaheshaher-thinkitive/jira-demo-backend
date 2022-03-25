@@ -7,4 +7,5 @@ const router = require("express").Router()
 router.post("/create",[projectValidator.validateTitle,validateData],projectController.createProject)
 router.post("/by/id",projectController.getProjectById)
 router.get("",projectController.getProjects)
+router.post("/by/owner",projectController.getProjectsByOwner)
 module.exports = router
