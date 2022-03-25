@@ -13,8 +13,8 @@ const ticketSchema = new mongoose.Schema({
     },
     lifecycle:{
         type:String,
-        enum:["todo","in-progress","ready-for-review","code-review"],
-        default:"todo"
+        enum:["Todo","In Progress","Ready to review","Code review"],
+        default:"Todo"
     },
     reporter_id:{
         type:mongoose.Types.ObjectId,

@@ -4,5 +4,6 @@ const ticketController = require("../controllers/ticketController")
 router.post("/create",ticketController.createTicket)
 router.patch("/update",ticketController.updateTicket)
 router.get("",ticketController.getTickets)
-
+router.post("/by/user",ticketController.getTicketsByUser)
+router.post("/by/project",ticketController.getTicketsByProject)
 module.exports = router

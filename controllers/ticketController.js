@@ -62,3 +62,26 @@ module.exports.getTickets = async(req,res)=>{
         "data":ticketData
     })
 }
+
+module.exports.getTicketsByUser = async(req,res) =>{
+    let userId = req.body.user
+    let queryData = {
+        users:{$in:userId}
+    }
+    const ticketData = await getAllData(ticketModel,queryData)
+    return res.json({
+        "status":true,
+        "message":"Ticket listed successfully",
+        "data":ticketData
+    })
+}
+
+module.exports.getTicketsByProject = async(req,res)=>{
+    let projectId = req.body.project_id
+    const ticketData = await getAllData(ticketModel,{project_id:projectId})
+    return res.json({
+        "status":true,
+        "message":"Ticket listed successfully",
+        "data":ticketData
+    })
+}
