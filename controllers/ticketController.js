@@ -13,6 +13,7 @@ module.exports.createTicket = async(req,res)=>{
                 "data":result
             })
         }
+
         else {
             return res.json({
                 "status":false,
@@ -27,11 +28,15 @@ module.exports.updateTicket = async(req,res) =>{
     let id = req.body.id
     const data = req.body
     let updateData={}
-    if(data.user){
+    if(data.users){
+        delete data.users
         updateData={
-            $push:{users:data.user}
+             $addToSet:{users:data.users} // insert id if not exist 
+            
         }
     }
+    updateData={...updateData,...data}
+    
     const ticketData = await insertOrUpdate(ticketModel,{_id:id},updateData)
     if(ticketData){
         return res.json({
