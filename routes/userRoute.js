@@ -1,7 +1,9 @@
 const router = require("express").Router()
 const userController = require("../controllers/userController")
+const { validateData } = require("../lib/validateData")
+const { validateUser } = require("../validators/userValidator")
 
-router.post("/signup",userController.signUp)
+router.post("/signup",[validateUser.validateEmail,validateUser.validateName,validateData],userController.signUp)
 router.post("/by/id",userController.getUserById)
 router.get("",userController.getAllUser)
 
